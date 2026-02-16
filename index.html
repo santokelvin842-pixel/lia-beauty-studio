@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lía Beauty Studio | Elegancia & Estilo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    color:white;
+    overflow-x:hidden;
+    background: linear-gradient(135deg, #000000, #2e003e);
+}
+
+/* ✨ EFECTO BRILLO ANIMADO DE FONDO */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:200%;
+    height:200%;
+    background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06) 0%, transparent 25%),
+                radial-gradient(circle at 70% 60%, rgba(186,85,211,0.15) 0%, transparent 25%),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.05) 0%, transparent 25%);
+    animation: shimmer 18s linear infinite;
+    z-index:0;
+}
+
+@keyframes shimmer{
+    from{transform:translate(-10%, -10%) rotate(0deg);}
+    to{transform:translate(-20%, -20%) rotate(360deg);}
+}
+
+/* 👑 CORONAS DORADAS CON BRILLO */
+.corona{
+    font-size:42px;
+    background: linear-gradient(45deg, #FFD700, #fff5b7, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: brilloCorona 2s infinite alternate;
+}
+
+@keyframes brilloCorona{
+    from{ filter: drop-shadow(0 0 5px #FFD700); }
+    to{ filter: drop-shadow(0 0 20px #FFD700); }
+}
+
+header{
+    text-align:center;
+    padding:70px 20px;
+    background: linear-gradient(90deg,#4b0082,#000000);
+    position:relative;
+    z-index:1;
+}
+
+header h1{
+    font-family:'Playfair Display', serif;
+    font-size:3em;
+    letter-spacing:3px;
+}
+
+header p{
+    margin-top:12px;
+    font-size:1.1em;
+    color:#d8b4ff;
+}
+
+.container{
+    background:white;
+    color:#333;
+    max-width:520px;
+    margin:-40px auto 50px auto;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.6);
+    position:relative;
+    z-index:1;
+}
+
+.container h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-family:'Playfair Display', serif;
+    color:#4b0082;
+}
+
+input, select{
+    width:100%;
+    padding:15px;
+    margin:14px 0;
+    border-radius:12px;
+    border:1px solid #ccc;
+    font-size:15px;
+    transition:0.3s;
+}
+
+input:focus, select:focus{
+    border-color:#6a0dad;
+    outline:none;
+    box-shadow:0 0 10px rgba(106,13,173,0.4);
+}
+
+button{
+    width:100%;
+    padding:16px;
+    margin-top:20px;
+    border:none;
+    border-radius:40px;
+    background: linear-gradient(45deg,#6a0dad,#000000);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    letter-spacing:1px;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 30px rgba(0,0,0,0.5);
+}
+
+footer{
+    text-align:center;
+    padding:25px;
+    color:#b57edc;
+    margin-top:auto;
+    font-size:14px;
+    position:relative;
+    z-index:1;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>
+        <span class="corona">👑</span> 
+        Lía Beauty Studio 
+        <span class="corona">👑</span>
+    </h1>
+    <p>Elegancia • Distinción • Estilo ✨</p>
+</header>
+
+<div class="container">
+    <h2>Reserva tu cita</h2>
+
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+
+    <select id="servicio">
+        <option value="">Selecciona un servicio</option>
+        <option>Corte de cabello</option>
+        <option>Tinte</option>
+        <option>Uñas acrílicas</option>
+        <option>Maquillaje profesional</option>
+        <option>Peinado</option>
+        <option>Tratamiento capilar</option>
+    </select>
+
+    <input type="date" id="fecha" required>
+
+    <select id="hora">
+        <option value="">Selecciona la hora</option>
+        <option>9:00 AM</option>
+        <option>10:00 AM</option>
+        <option>11:00 AM</option>
+        <option>1:00 PM</option>
+        <option>2:00 PM</option>
+        <option>3:00 PM</option>
+        <option>4:00 PM</option>
+        <option>5:00 PM</option>
+    </select>
+
+    <button onclick="enviarWhatsApp()">Agendar por WhatsApp ✨</button>
+</div>
+
+<footer>
+    © 2026 Lía Beauty Studio — Belleza en su máxima expresión
+</footer>
+
+<script>
+function enviarWhatsApp(){
+    var nombre = document.getElementById("nombre").value;
+    var servicio = document.getElementById("servicio").value;
+    var fecha = document.getElementById("fecha").value;
+    var hora = document.getElementById("hora").value;
+
+    if(nombre === "" || servicio === "" || fecha === "" || hora === ""){
+        alert("Por favor completa todos los campos.");
+        return;
+    }
+
+    var numero = "50585211707";
+
+    var mensaje = "Buenas tardes, deseo agendar una cita en Lía Beauty Studio.%0A%0A" +
+                  "Nombre: " + nombre + "%0A" +
+                  "Servicio: " + servicio + "%0A" +
+                  "Fecha: " + fecha + "%0A" +
+                  "Hora: " + hora + "%0A%0A" +
+                  "Quedo atento(a) a confirmación.";
+
+    var url = "https://wa.me/" + numero + "?text=" + mensaje;
+    window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
